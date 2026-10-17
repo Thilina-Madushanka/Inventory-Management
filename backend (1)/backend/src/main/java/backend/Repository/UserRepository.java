@@ -10,4 +10,5 @@ public interface UserRepository extends JpaRepository<UserModel, Integer> {
     //for user login - check email already exists in the db
     Optional<UserModel> findAllByEmail(String email);
 
+
 }

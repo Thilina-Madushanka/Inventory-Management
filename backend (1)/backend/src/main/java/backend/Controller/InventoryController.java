@@ -56,6 +56,7 @@ public class InventoryController {
     @GetMapping("/inventory/{id}")
     InventoryModel getItemById(@PathVariable Long id){
         return inventoryRepository.findById(id).orElseThrow(()->new InventoryNotFoundException(id));
+
     }
 
     //display image

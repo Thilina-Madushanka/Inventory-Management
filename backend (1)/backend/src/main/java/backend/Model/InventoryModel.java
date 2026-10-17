@@ -25,6 +25,7 @@ public class InventoryModel {
         this.itemName = itemName;
         this.itemCategory = itemCategory;
         this.itemDetail = itemDetail;
+
     }
 
     public Long getId() {

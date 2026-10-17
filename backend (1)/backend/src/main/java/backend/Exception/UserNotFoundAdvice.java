@@ -19,6 +19,7 @@ public class UserNotFoundAdvice{
         Map<String,String> map = new HashMap<>();
         map.put("message",exception.getMessage());
         return map;
+
     }
 
 }

@@ -8,4 +8,5 @@ public class InventoryNotFoundException extends RuntimeException{
         super(message);
     }
 
+
 }

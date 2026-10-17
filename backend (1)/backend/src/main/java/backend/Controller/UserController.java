@@ -41,8 +41,6 @@ public class UserController {
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "wrong Password"));
         }
-
-
     }
 
     //display user Profile

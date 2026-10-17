@@ -19,6 +19,5 @@ public class InventoryNotFoundAdviceException {
         Map<String,String> errorMap = new HashMap<>();
         errorMap.put("errorMessage",exception.getMessage());
         return errorMap;
-
     }
 }
