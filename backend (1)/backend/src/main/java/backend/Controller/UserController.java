@@ -54,5 +54,21 @@ public class UserController {
                 .orElseThrow(()-> new UserNotFoundException("user not found:" + id));
     }
 
+    //update user profile
+    @PutMapping("/user/{id}")
+    public UserModel updateUser(@PathVariable Long id, @RequestBody UserModel newUserModel){
+
+        return userRepository.findById(Math.toIntExact(id)).map(userModel -> {
+            userModel.setName(newUserModel.getName());
+            userModel.setEmail(newUserModel.getEmail());
+
+            if(newUserModel.getPassword() != null && !newUserModel.getPassword().isEmpty()){
+                userModel.setPassword(newUserModel.getPassword());
+            }
+            return userRepository.save(userModel);
+        }).orElseThrow(()-> new UserNotFoundException("user not found"+id));
+    }
+
+
 
 }
