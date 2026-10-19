@@ -56,17 +56,27 @@ public class UserController {
 
     //update user profile
     @PutMapping("/user/{id}")
-    public UserModel updateUser(@PathVariable Long id, @RequestBody UserModel newUserModel){
+    public UserModel updateUser(@PathVariable Long id, @RequestBody UserModel newUserModel) {
 
         return userRepository.findById(Math.toIntExact(id)).map(userModel -> {
             userModel.setName(newUserModel.getName());
             userModel.setEmail(newUserModel.getEmail());
 
-            if(newUserModel.getPassword() != null && !newUserModel.getPassword().isEmpty()){
+            if (newUserModel.getPassword() != null && !newUserModel.getPassword().isEmpty()) {
                 userModel.setPassword(newUserModel.getPassword());
             }
             return userRepository.save(userModel);
-        }).orElseThrow(()-> new UserNotFoundException("user not found"+id));
+        }).orElseThrow(() -> new UserNotFoundException("user not found" + id));
+    }
+
+    //delete user
+    @DeleteMapping("/user/{id}")
+    String deleteProfile(@PathVariable Long id){
+        if(!userRepository.existsById(Math.toIntExact(id))){
+            throw new UserNotFoundException(id);
+        }
+        userRepository.deleteById(Math.toIntExact(id));
+        return "Deleted Account" + id;
     }
 
 
